@@ -53,9 +53,9 @@ public class OrderRepository {
         return orderDetails.size()-orderToPartner.size();
     }
 
-    public Integer getOrdersLeftAfterGivenTimeByPartnerId(String time, String partnerId) {
+    public Integer getOrdersLeftAfterGivenTimeByPartnerId(int intTime, String partnerId) {
         int count = 0;
-        int intTime = Integer.parseInt(time.substring(0,2))*60 + Integer.parseInt(time.substring(3));
+
         List<String> ordersToCheck = partnerToOrder.get(partnerId);
         for(String orderID: ordersToCheck){
             if(orderDetails.get(orderID).getDeliveryTime()>intTime){
@@ -65,7 +65,7 @@ public class OrderRepository {
         return count;
     }
 
-    public String getLastDeliveryTimeByPartnerId(String partnerId) {
+    public int getLastDeliveryTimeByPartnerId(String partnerId) {
         int lastOrderTime = 0;
 
         List<String> ordersOfPartner = partnerToOrder.get(partnerId);
@@ -75,18 +75,7 @@ public class OrderRepository {
             }
         }
 
-        int hours = lastOrderTime/60;
-        int minutes = lastOrderTime%60;
-        String HH = ""+hours;
-        String MM = ""+minutes;
-
-        if(HH.length()==1){
-            HH = '0'+HH;
-        }
-        if(MM.length()==1){
-            MM = '0'+MM;
-        }
-        return HH+':'+MM;
+        return lastOrderTime;
     }
 
     public void deletePartnerById(String partnerId) {
