@@ -77,8 +77,16 @@ public class OrderRepository {
 
         int hours = lastOrderTime/60;
         int minutes = lastOrderTime%60;
+        String HH = ""+hours;
+        String MM = ""+minutes;
 
-        return hours+":"+minutes;
+        if(HH.length()==1){
+            HH = '0'+HH;
+        }
+        if(MM.length()==1){
+            MM = '0'+MM;
+        }
+        return HH+':'+MM;
     }
 
     public void deletePartnerById(String partnerId) {
