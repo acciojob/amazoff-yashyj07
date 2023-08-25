@@ -8,9 +8,11 @@ import java.util.List;
 @Service
 public class OrderService {
 
-    @Autowired
-    OrderRepository orderRepository;
-//    OrderRepository orderRepository=new OrderRepository();
+//    @Autowired
+//    OrderRepository orderRepository;
+
+    //test case not getting passed with @Autowired
+    OrderRepository orderRepository=new OrderRepository();
 
     public void addOrder(Order order) {
         orderRepository.addOrder(order);
