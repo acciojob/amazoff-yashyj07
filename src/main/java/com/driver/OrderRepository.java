@@ -20,7 +20,11 @@ public class OrderRepository {
         partnerDetails.put(partnerId, new DeliveryPartner(partnerId));
     }
     public void addOrderPartnerPair(String orderId, String partnerId) {
-        partnerToOrder.get(partnerId).add(orderId);
+        if(partnerToOrder.containsKey(partnerId)){
+            partnerToOrder.get(partnerId).add(orderId);
+        }else{
+            partnerToOrder.put(partnerId, new ArrayList<>());
+        }
         partnerDetails.get(partnerId).setNumberOfOrders(partnerDetails.get(partnerId).getNumberOfOrders()+1);
         orderToPartner.put(orderId, partnerId);
     }
